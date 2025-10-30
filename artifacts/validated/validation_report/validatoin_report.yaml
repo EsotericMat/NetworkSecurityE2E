@@ -1,0 +1,6 @@
+drift_report: {}
+test_Nulls_Detection: 'True'
+test_Validation_Schema: 'True'
+train and test_Drift: true
+train_Nulls_Detection: 'True'
+train_Validation_Schema: 'True'

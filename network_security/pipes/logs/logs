@@ -1,0 +1,25 @@
+2025-09-18 21:00:47.137 | INFO     | __main__:<module>:48 - Loading data
+2025-09-18 21:01:46.685 | INFO     | __main__:<module>:48 - Loading data
+2025-09-18 21:02:20.868 | INFO     | __main__:<module>:48 - Loading data
+2025-09-18 21:03:53.036 | INFO     | __main__:<module>:48 - Loading data
+2025-09-18 21:03:55.752 | INFO     | __main__:<module>:52 - Transfer to JSON
+2025-09-18 21:03:55.756 | INFO     | __main__:<module>:54 - Insert into MongoDB
+2025-09-18 21:04:23.000 | SUCCESS  | __main__:<module>:56 - Successfully inserted into MongoDB
+2025-09-18 21:41:34.904 | INFO     | __main__:<module>:48 - Loading data
+2025-09-19 12:19:08.644 | INFO     | __main__:<module>:48 - Loading data
+2025-09-28 14:43:34.199 | INFO     | __main__:<module>:48 - Loading data
+2025-09-28 14:43:34.520 | INFO     | __main__:<module>:52 - Transfer to JSON
+2025-09-28 14:44:00.997 | INFO     | __main__:<module>:48 - Loading data
+2025-09-28 14:44:01.297 | INFO     | __main__:<module>:52 - Transfer to JSON
+2025-09-28 14:44:10.327 | INFO     | __main__:<module>:48 - Loading data
+2025-09-28 14:44:10.964 | INFO     | __main__:<module>:52 - Transfer to JSON
+2025-09-28 14:44:10.968 | INFO     | __main__:<module>:54 - Insert into MongoDB
+2025-09-28 14:44:17.175 | SUCCESS  | __main__:<module>:56 - Successfully inserted into MongoDB
+2025-10-30 23:38:09.251 | INFO     | __main__:<module>:48 - Loading data
+2025-10-30 23:38:09.518 | INFO     | __main__:<module>:52 - Transfer to JSON
+2025-10-30 23:38:09.520 | INFO     | __main__:<module>:54 - Insert into MongoDB
+2025-10-30 23:38:10.292 | SUCCESS  | __main__:<module>:56 - Successfully inserted into MongoDB
+2025-10-30 23:38:39.684 | INFO     | __main__:<module>:48 - Loading data
+2025-10-30 23:38:39.721 | INFO     | __main__:<module>:52 - Transfer to JSON
+2025-10-30 23:38:39.807 | INFO     | __main__:<module>:54 - Insert into MongoDB
+2025-10-30 23:38:47.828 | SUCCESS  | __main__:<module>:56 - Successfully inserted into MongoDB

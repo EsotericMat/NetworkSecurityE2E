@@ -1,0 +1,1131 @@
+2025-09-18 21:32:59.902 | ERROR    | network_security.pipes.etl:csv_to_json:38 - [Errno 2] No such file or directory: 'data/phishingData.csv'
+2025-09-18 21:40:26.683 | ERROR    | network_security.pipes.etl:csv_to_json:38 - [Errno 2] No such file or directory: 'data/phishingData.csv'
+2025-09-29 20:33:07.332 | INFO     | network_security.pipes.ingestion:run:75 - Starting data ingestion
+2025-09-29 20:33:07.332 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:37 - Reading data from MongoDB
+2025-09-29 20:33:12.958 | ERROR    | network_security.pipes.ingestion:read_from_mongo_db:49 - Can't read from MongoDB: 'Database' object is not callable. If you meant to call the 'find' method on a 'MongoClient' object it is failing because no such method exists.
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x10d3f0f40>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102f13c20>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 76, in run
+    df = self.read_from_mongo_db()
+         │    └ <function DataIngestionPipe.read_from_mongo_db at 0x10d3c0860>
+         └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102f13c20>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 42, in read_from_mongo_db
+    list(etl_obj.find())
+         └ MongoClient(host=['ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017', 'ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net:27017', 'ac...
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/database.py", line 1646, in __call__
+    raise TypeError("'Database' object is not callable. If you meant to "
+
+TypeError: 'Database' object is not callable. If you meant to call the 'find' method on a 'MongoClient' object it is failing because no such method exists.
+2025-09-29 20:33:12.965 | INFO     | network_security.pipes.ingestion:split_to_train_test:64 - Split data into train and test
+2025-09-29 20:33:12.965 | ERROR    | network_security.pipes.ingestion:split_to_train_test:72 - Can't split data into train and test: Expected sequence or array-like, got <class 'NoneType'>
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x10d3f0f40>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102f13c20>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 77, in run
+    self.split_to_train_test(df)
+    │    │                   └ None
+    │    └ <function DataIngestionPipe.split_to_train_test at 0x10d3f0ea0>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102f13c20>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 65, in split_to_train_test
+    train_set, test_set = train_test_split(
+                          └ <function train_test_split at 0x10d39f9c0>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/sklearn/utils/_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+           │     │       └ {'train_size': 0.2}
+           │     └ (None,)
+           └ <function train_test_split at 0x10d39f880>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/sklearn/model_selection/_split.py", line 2918, in train_test_split
+    n_samples = _num_samples(arrays[0])
+                │            └ [None]
+                └ <function _num_samples at 0x10c883560>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/sklearn/utils/validation.py", line 395, in _num_samples
+    raise TypeError(message)
+                    └ "Expected sequence or array-like, got <class 'NoneType'>"
+
+TypeError: Expected sequence or array-like, got <class 'NoneType'>
+2025-09-29 20:33:12.970 | SUCCESS  | network_security.pipes.ingestion:run:78 - Finished data ingestion
+2025-09-29 20:42:31.220 | INFO     | network_security.pipes.ingestion:run:75 - Starting data ingestion
+2025-09-29 20:42:31.220 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:37 - Reading data from MongoDB
+2025-09-29 20:42:57.931 | ERROR    | network_security.pipes.ingestion:read_from_mongo_db:49 - Can't read from MongoDB: The DNS operation timed out after 20.001988172531128 seconds
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/srv_resolver.py", line 73, in get_options
+    results = _resolve(self.__fqdn, 'TXT',
+              │        └ <pymongo.srv_resolver._SrvResolver object at 0x1251373e0>
+              └ <function _resolve at 0x1035d93a0>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/srv_resolver.py", line 48, in _resolve
+    return resolver.query(*args, **kwargs)
+           │        │      │       └ {'lifetime': 20.0}
+           │        │      └ ('nse2e.2ylalqm.mongodb.net', 'TXT')
+           │        └ <function query at 0x1035d8c20>
+           └ <module 'dns.resolver' from '/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/dns/res...
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/dns/resolver.py", line 1100, in query
+    return get_default_resolver().query(qname, rdtype, rdclass, tcp, source,
+           │                            │      │       │        │    └ None
+           │                            │      │       │        └ False
+           │                            │      │       └ 1
+           │                            │      └ 'TXT'
+           │                            └ 'nse2e.2ylalqm.mongodb.net'
+           └ <function get_default_resolver at 0x1033b5080>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/dns/resolver.py", line 900, in query
+    timeout = self._compute_timeout(start, lifetime)
+              │    │                │      └ 20.0
+              │    │                └ 1759167757.9290109
+              │    └ <function Resolver._compute_timeout at 0x1035d8860>
+              └ <dns.resolver.Resolver object at 0x12552ba10>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/dns/resolver.py", line 799, in _compute_timeout
+    raise Timeout(timeout=duration)
+          │               └ 20.001988172531128
+          └ <class 'dns.exception.Timeout'>
+
+dns.exception.Timeout: The DNS operation timed out after 20.001988172531128 seconds
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x125c30f40>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102ed6900>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 76, in run
+    df = self.read_from_mongo_db()
+         │    └ <function DataIngestionPipe.read_from_mongo_db at 0x125c00860>
+         └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102ed6900>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 40, in read_from_mongo_db
+    etl_obj = ETL(db_name, collection_nama).collection
+              │   │        └ 'phishingData'
+              │   └ 'NSE2E_DB'
+              └ <class 'network_security.pipes.etl.ETL'>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/etl.py", line 19, in __init__
+    self.client = MongoClient(MONGO_URI,
+    │             │           └ 'mongodb+srv://esotericMat:esoteric8516@nse2e.2ylalqm.mongodb.net/?retryWrites=true&w=majority&appName=NSE2E'
+    │             └ <class 'pymongo.mongo_client.MongoClient'>
+    └ <network_security.pipes.etl.ETL object at 0x125550860>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 670, in __init__
+    res = uri_parser.parse_uri(
+          │          └ <function parse_uri at 0x1035d9e40>
+          └ <module 'pymongo.uri_parser' from '/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/p...
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/uri_parser.py", line 525, in parse_uri
+    dns_options = dns_resolver.get_options()
+                  │            └ <function _SrvResolver.get_options at 0x1035d9620>
+                  └ <pymongo.srv_resolver._SrvResolver object at 0x1251373e0>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/srv_resolver.py", line 79, in get_options
+    raise ConfigurationError(str(exc))
+          └ <class 'pymongo.errors.ConfigurationError'>
+
+pymongo.errors.ConfigurationError: The DNS operation timed out after 20.001988172531128 seconds
+2025-09-29 20:42:57.951 | INFO     | network_security.pipes.ingestion:split_to_train_test:64 - Split data into train and test
+2025-09-29 20:42:57.952 | ERROR    | network_security.pipes.ingestion:split_to_train_test:72 - Can't split data into train and test: Expected sequence or array-like, got <class 'NoneType'>
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x125c30f40>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102ed6900>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 77, in run
+    self.split_to_train_test(df)
+    │    │                   └ None
+    │    └ <function DataIngestionPipe.split_to_train_test at 0x125c30ea0>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102ed6900>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 65, in split_to_train_test
+    train_set, test_set = train_test_split(
+                          └ <function train_test_split at 0x125bdf9c0>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/sklearn/utils/_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+           │     │       └ {'train_size': 0.2}
+           │     └ (None,)
+           └ <function train_test_split at 0x125bdf880>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/sklearn/model_selection/_split.py", line 2918, in train_test_split
+    n_samples = _num_samples(arrays[0])
+                │            └ [None]
+                └ <function _num_samples at 0x1250c7560>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/sklearn/utils/validation.py", line 395, in _num_samples
+    raise TypeError(message)
+                    └ "Expected sequence or array-like, got <class 'NoneType'>"
+
+TypeError: Expected sequence or array-like, got <class 'NoneType'>
+2025-09-29 20:42:57.955 | SUCCESS  | network_security.pipes.ingestion:run:78 - Finished data ingestion
+2025-09-29 20:45:04.539 | INFO     | network_security.pipes.ingestion:run:76 - Starting data ingestion
+2025-09-29 20:45:04.539 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:37 - Reading data from MongoDB
+2025-09-29 20:45:40.210 | ERROR    | network_security.pipes.ingestion:read_from_mongo_db:49 - Can't read from MongoDB: ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017: timed out,ac-sqvxrve-shard-00-00.2ylalqm.mongodb.net:27017: timed out,ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net:27017: timed out, Timeout: 30s, Topology Description: <TopologyDescription id: 68dac5a5ae21ebce12568085, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-sqvxrve-shard-00-00.2ylalqm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-sqvxrve-shard-00-00.2ylalqm.mongodb.net:27017: timed out')>, <ServerDescription ('ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017: timed out')>, <ServerDescription ('ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net:27017: timed out')>]>
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x10b8a8f40>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102503c20>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 77, in run
+    df = self.read_from_mongo_db()
+         │    └ <function DataIngestionPipe.read_from_mongo_db at 0x10b878860>
+         └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102503c20>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 42, in read_from_mongo_db
+    list(etl_obj.find())
+         │       └ <function Collection.find at 0x10324e2a0>
+         └ Collection(Database(MongoClient(host=['ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017', 'ac-sqvxrve-shard-00-00.2ylalqm.mon...
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/cursor.py", line 1238, in next
+    if len(self.__data) or self._refresh():
+           │               │    └ <function Cursor._refresh at 0x1031eb740>
+           │               └ <pymongo.cursor.Cursor object at 0x10348a210>
+           └ <pymongo.cursor.Cursor object at 0x10348a210>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/cursor.py", line 1130, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+    │                └ <pymongo.cursor.Cursor object at 0x10348a210>
+    └ <pymongo.cursor.Cursor object at 0x10348a210>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1935, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+           └ MongoClient(host=['ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017', 'ac-sqvxrve-shard-00-00.2ylalqm.mongodb.net:27017', 'ac...
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1883, in __start_session
+    server_session = self._get_server_session()
+                     │    └ <function MongoClient._get_server_session at 0x103524720>
+                     └ MongoClient(host=['ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017', 'ac-sqvxrve-shard-00-00.2ylalqm.mongodb.net:27017', 'ac...
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1921, in _get_server_session
+    return self._topology.get_server_session()
+           │    │         └ <function Topology.get_server_session at 0x1035209a0>
+           │    └ <Topology <TopologyDescription id: 68dac5a5ae21ebce12568085, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription...
+           └ MongoClient(host=['ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017', 'ac-sqvxrve-shard-00-00.2ylalqm.mongodb.net:27017', 'ac...
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/topology.py", line 520, in get_server_session
+    session_timeout = self._check_session_support()
+                      │    └ <function Topology._check_session_support at 0x103520900>
+                      └ <Topology <TopologyDescription id: 68dac5a5ae21ebce12568085, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription...
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/topology.py", line 504, in _check_session_support
+    self._select_servers_loop(
+    │    └ <function Topology._select_servers_loop at 0x103517a60>
+    └ <Topology <TopologyDescription id: 68dac5a5ae21ebce12568085, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription...
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/topology.py", line 218, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+          └ <class 'pymongo.errors.ServerSelectionTimeoutError'>
+
+pymongo.errors.ServerSelectionTimeoutError: ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017: timed out,ac-sqvxrve-shard-00-00.2ylalqm.mongodb.net:27017: timed out,ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net:27017: timed out, Timeout: 30s, Topology Description: <TopologyDescription id: 68dac5a5ae21ebce12568085, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-sqvxrve-shard-00-00.2ylalqm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-sqvxrve-shard-00-00.2ylalqm.mongodb.net:27017: timed out')>, <ServerDescription ('ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017: timed out')>, <ServerDescription ('ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net:27017: timed out')>]>
+2025-09-29 20:45:40.223 | INFO     | network_security.pipes.ingestion:split_to_train_test:64 - Split data into train and test
+2025-09-29 20:45:40.224 | ERROR    | network_security.pipes.ingestion:split_to_train_test:72 - Can't split data into train and test: Expected sequence or array-like, got <class 'NoneType'>
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x10b8a8f40>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102503c20>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 78, in run
+    self.split_to_train_test(df)
+    │    │                   └ None
+    │    └ <function DataIngestionPipe.split_to_train_test at 0x10b8a8ea0>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102503c20>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 65, in split_to_train_test
+    train_set, test_set = train_test_split(
+                          └ <function train_test_split at 0x10b85b9c0>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/sklearn/utils/_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+           │     │       └ {'train_size': 0.2}
+           │     └ (None,)
+           └ <function train_test_split at 0x10b85b880>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/sklearn/model_selection/_split.py", line 2918, in train_test_split
+    n_samples = _num_samples(arrays[0])
+                │            └ [None]
+                └ <function _num_samples at 0x10ad3f560>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/sklearn/utils/validation.py", line 395, in _num_samples
+    raise TypeError(message)
+                    └ "Expected sequence or array-like, got <class 'NoneType'>"
+
+TypeError: Expected sequence or array-like, got <class 'NoneType'>
+2025-09-29 20:45:40.228 | SUCCESS  | network_security.pipes.ingestion:run:79 - Finished data ingestion
+2025-09-30 10:22:20.030 | INFO     | network_security.pipes.ingestion:run:76 - Starting data ingestion
+2025-09-30 10:22:20.031 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:37 - Reading data from MongoDB
+2025-09-30 10:23:26.370 | ERROR    | network_security.pipes.ingestion:read_from_mongo_db:49 - Can't read from MongoDB: No replica set members match selector "Primary()", Timeout: 30s, Topology Description: <TopologyDescription id: 68db85393bd8a971065ec127, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-sqvxrve-shard-00-00.2ylalqm.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.16668537503574044>, <ServerDescription ('ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017: timed out')>, <ServerDescription ('ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net:27017: timed out')>]>
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x10ed84f40>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x104a8bc20>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 77, in run
+    df = self.read_from_mongo_db()
+         │    └ <function DataIngestionPipe.read_from_mongo_db at 0x10ed54860>
+         └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x104a8bc20>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 42, in read_from_mongo_db
+    list(etl_obj.find())
+         │       └ <function Collection.find at 0x1057d62a0>
+         └ Collection(Database(MongoClient(host=['ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017', 'ac-sqvxrve-shard-00-02.2ylalqm.mon...
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/cursor.py", line 1238, in next
+    if len(self.__data) or self._refresh():
+           │               │    └ <function Cursor._refresh at 0x105773740>
+           │               └ <pymongo.cursor.Cursor object at 0x104dfbd10>
+           └ <pymongo.cursor.Cursor object at 0x104dfbd10>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/cursor.py", line 1155, in _refresh
+    self.__send_message(q)
+    │                   └ <pymongo.message._Query object at 0x10ed06f00>
+    └ <pymongo.cursor.Cursor object at 0x104dfbd10>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/cursor.py", line 1044, in __send_message
+    response = client._run_operation(
+               │      └ <function MongoClient._run_operation at 0x105aab7e0>
+               └ MongoClient(host=['ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017', 'ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net:27017', 'ac...
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1424, in _run_operation
+    return self._retryable_read(
+           │    └ <function MongoClient._retryable_read at 0x105aab9c0>
+           └ MongoClient(host=['ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017', 'ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net:27017', 'ac...
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1514, in _retryable_read
+    server = self._select_server(
+             │    └ <function MongoClient._select_server at 0x105aab380>
+             └ MongoClient(host=['ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017', 'ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net:27017', 'ac...
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1346, in _select_server
+    server = topology.select_server(server_selector)
+             │        │             └ Primary()
+             │        └ <function Topology.select_server at 0x105a9fb00>
+             └ <Topology <TopologyDescription id: 68db85393bd8a971065ec127, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription...
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/topology.py", line 244, in select_server
+    return random.choice(self.select_servers(selector,
+           │      │      │    │              └ Primary()
+           │      │      │    └ <function Topology.select_servers at 0x105a9f9c0>
+           │      │      └ <Topology <TopologyDescription id: 68db85393bd8a971065ec127, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription...
+           │      └ <bound method Random.choice of <random.Random object at 0x148955e20>>
+           └ <module 'random' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/random.py'>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/topology.py", line 202, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          │    └ <function Topology._select_servers_loop at 0x105a9fa60>
+                          └ <Topology <TopologyDescription id: 68db85393bd8a971065ec127, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription...
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/topology.py", line 218, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+          └ <class 'pymongo.errors.ServerSelectionTimeoutError'>
+
+pymongo.errors.ServerSelectionTimeoutError: No replica set members match selector "Primary()", Timeout: 30s, Topology Description: <TopologyDescription id: 68db85393bd8a971065ec127, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-sqvxrve-shard-00-00.2ylalqm.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.16668537503574044>, <ServerDescription ('ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017: timed out')>, <ServerDescription ('ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net:27017: timed out')>]>
+2025-09-30 10:23:26.381 | INFO     | network_security.pipes.ingestion:split_to_train_test:64 - Split data into train and test
+2025-09-30 10:23:26.383 | ERROR    | network_security.pipes.ingestion:split_to_train_test:72 - Can't split data into train and test: Expected sequence or array-like, got <class 'NoneType'>
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x10ed84f40>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x104a8bc20>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 78, in run
+    self.split_to_train_test(df)
+    │    │                   └ None
+    │    └ <function DataIngestionPipe.split_to_train_test at 0x10ed84ea0>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x104a8bc20>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 65, in split_to_train_test
+    train_set, test_set = train_test_split(
+                          └ <function train_test_split at 0x10ed339c0>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/sklearn/utils/_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+           │     │       └ {'train_size': 0.2}
+           │     └ (None,)
+           └ <function train_test_split at 0x10ed33880>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/sklearn/model_selection/_split.py", line 2918, in train_test_split
+    n_samples = _num_samples(arrays[0])
+                │            └ [None]
+                └ <function _num_samples at 0x10e13f560>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/sklearn/utils/validation.py", line 395, in _num_samples
+    raise TypeError(message)
+                    └ "Expected sequence or array-like, got <class 'NoneType'>"
+
+TypeError: Expected sequence or array-like, got <class 'NoneType'>
+2025-09-30 10:23:26.388 | SUCCESS  | network_security.pipes.ingestion:run:79 - Finished data ingestion
+2025-09-30 16:13:23.744 | INFO     | network_security.pipes.ingestion:run:76 - Starting data ingestion
+2025-09-30 16:13:23.744 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:37 - Reading data from MongoDB
+2025-09-30 16:13:24.789 | INFO     | network_security.pipes.ingestion:split_to_train_test:64 - Split data into train and test
+2025-09-30 16:13:24.793 | ERROR    | network_security.pipes.ingestion:split_to_train_test:72 - Can't split data into train and test: Cannot save file into a non-existent directory: 'artifacts/data_ingestion'
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x10ac73240>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x10057a210>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 78, in run
+    self.split_to_train_test(df)
+    │    │                   └     having_IP_Address  URL_Length  ...  Statistical_report  Result
+    │    │                     0                   1           0  ...                   1...
+    │    └ <function DataIngestionPipe.split_to_train_test at 0x10ac731a0>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x10057a210>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 69, in split_to_train_test
+    train_set.to_csv(self.train_dir)
+    │         │      │    └ 'artifacts/data_ingestion/train.csv'
+    │         │      └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x10057a210>
+    │         └ <function NDFrame.to_csv at 0x10459a5c0>
+    └     having_IP_Address  URL_Length  ...  Statistical_report  Result
+      19                  1           1  ...                   1...
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           │     │       └ {}
+           │     └ (    having_IP_Address  URL_Length  ...  Statistical_report  Result
+           │       19                  1           1  ...                   ...
+           └ <function NDFrame.to_csv at 0x10459a520>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/core/generic.py", line 3986, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           │                 └ <pandas.io.formats.format.DataFrameFormatter object at 0x10a66f680>
+           └ <class 'pandas.io.formats.format.DataFrameRenderer'>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/formats/format.py", line 1014, in to_csv
+    csv_formatter.save()
+    │             └ <function CSVFormatter.save at 0x10ac9b240>
+    └ <pandas.io.formats.csvs.CSVFormatter object at 0x10a6a8620>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/formats/csvs.py", line 251, in save
+    with get_handle(
+         └ <function get_handle at 0x104541800>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 749, in get_handle
+    check_parent_directory(str(handle))
+    │                          └ 'artifacts/data_ingestion/train.csv'
+    └ <function check_parent_directory at 0x1045413a0>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 616, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+                                                                       └ PosixPath('artifacts/data_ingestion')
+
+OSError: Cannot save file into a non-existent directory: 'artifacts/data_ingestion'
+2025-09-30 16:13:24.867 | SUCCESS  | network_security.pipes.ingestion:run:79 - Finished data ingestion
+2025-09-30 16:28:39.705 | INFO     | network_security.pipes.ingestion:run:76 - Starting data ingestion
+2025-09-30 16:28:39.705 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:37 - Reading data from MongoDB
+2025-09-30 16:28:44.953 | INFO     | network_security.pipes.ingestion:run:76 - Starting data ingestion
+2025-09-30 16:28:44.953 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:37 - Reading data from MongoDB
+2025-09-30 16:28:45.651 | INFO     | network_security.pipes.ingestion:split_to_train_test:64 - Split data into train and test
+2025-09-30 16:28:45.661 | ERROR    | network_security.pipes.ingestion:split_to_train_test:72 - Can't split data into train and test: Cannot save file into a non-existent directory: 'artifacts/data_ingestion'
+Traceback (most recent call last):
+
+  File "/Applications/PyCharm.app/Contents/plugins/python-ce/helpers/pydev/pydevd.py", line 2270, in <module>
+    main()
+    └ <function main at 0x10c22f100>
+
+  File "/Applications/PyCharm.app/Contents/plugins/python-ce/helpers/pydev/pydevd.py", line 2252, in main
+    globals = debugger.run(setup['file'], None, None, is_module)
+              │        │   │                          └ False
+              │        │   └ {'port': 63403, 'vm_type': None, 'client': '127.0.0.1', 'server': False, 'DEBUG_RECORD_SOCKET_READS': False, 'multiproc': Fal...
+              │        └ <function PyDB.run at 0x10c22dda0>
+              └ <__main__.PyDB object at 0x1048a7950>
+
+  File "/Applications/PyCharm.app/Contents/plugins/python-ce/helpers/pydev/pydevd.py", line 1563, in run
+    return self._exec(is_module, entry_point_fn, module_name, file, globals, locals)
+           │    │     │          │               │            │     │        └ {'__name__': '__main__', '__doc__': None, '__package__': '', '__loader__': <_frozen_importlib_external.SourceFileLoader objec...
+           │    │     │          │               │            │     └ {'__name__': '__main__', '__doc__': None, '__package__': '', '__loader__': <_frozen_importlib_external.SourceFileLoader objec...
+           │    │     │          │               │            └ '/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py'
+           │    │     │          │               └ None
+           │    │     │          └ ''
+           │    │     └ False
+           │    └ <function PyDB._exec at 0x10c22de40>
+           └ <__main__.PyDB object at 0x1048a7950>
+
+  File "/Applications/PyCharm.app/Contents/plugins/python-ce/helpers/pydev/pydevd.py", line 1570, in _exec
+    pydev_imports.execfile(file, globals, locals)  # execute the script
+    │             │        │     │        └ {'__name__': '__main__', '__doc__': None, '__package__': '', '__loader__': <_frozen_importlib_external.SourceFileLoader objec...
+    │             │        │     └ {'__name__': '__main__', '__doc__': None, '__package__': '', '__loader__': <_frozen_importlib_external.SourceFileLoader objec...
+    │             │        └ '/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py'
+    │             └ <function execfile at 0x10a9b47c0>
+    └ <module '_pydev_bundle.pydev_imports' from '/Applications/PyCharm.app/Contents/plugins/python-ce/helpers/pydev/_pydev_bundle/...
+
+  File "/Applications/PyCharm.app/Contents/plugins/python-ce/helpers/pydev/_pydev_imps/_pydev_execfile.py", line 18, in execfile
+    exec(compile(contents+"\n", file, 'exec'), glob, loc)
+                 │              │              │     └ {'__name__': '__main__', '__doc__': None, '__package__': '', '__loader__': <_frozen_importlib_external.SourceFileLoader objec...
+                 │              │              └ {'__name__': '__main__', '__doc__': None, '__package__': '', '__loader__': <_frozen_importlib_external.SourceFileLoader objec...
+                 │              └ '/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py'
+                 └ "from network_security.pipes.ingestion import DataIngestionPipe\n\n\nif __name__ == '__main__':\n    ingestionObj = DataInges...
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x11c7867a0>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x10c265790>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 78, in run
+    self.split_to_train_test(df)
+    │    │                   └     having_IP_Address  URL_Length  ...  Statistical_report  Result
+    │    │                     0                   1           0  ...                   1...
+    │    └ <function DataIngestionPipe.split_to_train_test at 0x11c785080>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x10c265790>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 69, in split_to_train_test
+    train_set.to_csv(self.train_dir)
+    │         │      │    └ 'artifacts/data_ingestion/train.csv'
+    │         │      └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x10c265790>
+    │         └ <function NDFrame.to_csv at 0x10a0791c0>
+    └     having_IP_Address  URL_Length  ...  Statistical_report  Result
+      17                  1           0  ...                   1...
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           │     │       └ {}
+           │     └ (    having_IP_Address  URL_Length  ...  Statistical_report  Result
+           │       17                  1           0  ...                   ...
+           └ <function NDFrame.to_csv at 0x10a079120>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/core/generic.py", line 3986, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           │                 └ <pandas.io.formats.format.DataFrameFormatter object at 0x10ec86360>
+           └ <class 'pandas.io.formats.format.DataFrameRenderer'>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/formats/format.py", line 1014, in to_csv
+    csv_formatter.save()
+    │             └ <function CSVFormatter.save at 0x11ced2f20>
+    └ <pandas.io.formats.csvs.CSVFormatter object at 0x11a967c20>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/formats/csvs.py", line 251, in save
+    with get_handle(
+         └ <function get_handle at 0x10a024400>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 749, in get_handle
+    check_parent_directory(str(handle))
+    │                          └ 'artifacts/data_ingestion/train.csv'
+    └ <function check_parent_directory at 0x10a013f60>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 616, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+                                                                       └ PosixPath('artifacts/data_ingestion')
+
+OSError: Cannot save file into a non-existent directory: 'artifacts/data_ingestion'
+2025-09-30 16:28:46.070 | SUCCESS  | network_security.pipes.ingestion:run:79 - Finished data ingestion
+2025-09-30 17:46:01.046 | INFO     | network_security.pipes.ingestion:run:77 - Starting data ingestion
+2025-09-30 17:46:01.046 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:37 - Reading data from MongoDB
+2025-09-30 17:46:01.986 | INFO     | network_security.pipes.ingestion:split_to_train_test:65 - Split data into train and test
+2025-09-30 17:46:01.990 | ERROR    | network_security.pipes.ingestion:split_to_train_test:73 - Can't split data into train and test: Cannot save file into a non-existent directory: 'artifacts/data_ingestion'
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x10c08cf40>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102c33c20>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 79, in run
+    self.split_to_train_test(df)
+    │    │                   └     having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_Ind...
+    │    └ <function DataIngestionPipe.split_to_train_test at 0x10c08cea0>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102c33c20>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 70, in split_to_train_test
+    train_set.to_csv(self.train_dir)
+    │         │      │    └ 'artifacts/data_ingestion/train.csv'
+    │         │      └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102c33c20>
+    │         └ <function NDFrame.to_csv at 0x106b76f20>
+    └     having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_Ind...
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           │     │       └ {}
+           │     └ (    having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_In...
+           └ <function NDFrame.to_csv at 0x106b76e80>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/core/generic.py", line 3986, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           │                 └ <pandas.io.formats.format.DataFrameFormatter object at 0x102c33c50>
+           └ <class 'pandas.io.formats.format.DataFrameRenderer'>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/formats/format.py", line 1014, in to_csv
+    csv_formatter.save()
+    │             └ <function CSVFormatter.save at 0x10c0a0f40>
+    └ <pandas.io.formats.csvs.CSVFormatter object at 0x10b9fdaf0>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/formats/csvs.py", line 251, in save
+    with get_handle(
+         └ <function get_handle at 0x106b1a160>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 749, in get_handle
+    check_parent_directory(str(handle))
+    │                          └ 'artifacts/data_ingestion/train.csv'
+    └ <function check_parent_directory at 0x106b19d00>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 616, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+                                                                       └ PosixPath('artifacts/data_ingestion')
+
+OSError: Cannot save file into a non-existent directory: 'artifacts/data_ingestion'
+2025-09-30 17:46:02.071 | SUCCESS  | network_security.pipes.ingestion:run:80 - Finished data ingestion
+2025-09-30 17:47:46.150 | INFO     | network_security.pipes.ingestion:run:77 - Starting data ingestion
+2025-09-30 17:47:46.150 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:37 - Reading data from MongoDB
+2025-09-30 17:48:29.674 | INFO     | network_security.pipes.ingestion:run:77 - Starting data ingestion
+2025-09-30 17:48:29.674 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:37 - Reading data from MongoDB
+2025-09-30 17:48:30.419 | INFO     | network_security.pipes.ingestion:create_feature_store:53 - Creating feature store
+2025-09-30 17:48:30.422 | ERROR    | network_security.pipes.ingestion:create_feature_store:59 - Can't create feature store: Cannot save file into a non-existent directory: 'artifacts/data_ingestion/feature_store'
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x118348fe0>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x104d63bf0>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 79, in run
+    self.create_feature_store(df=df)
+    │    │                       └     having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_Ind...
+    │    └ <function DataIngestionPipe.create_feature_store at 0x11831b7e0>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x104d63bf0>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 56, in create_feature_store
+    df.to_csv(f"{self.feature_store_dir}/raw_fs.csv", index=False,header=True)
+    │  │         │    └ 'artifacts/data_ingestion/feature_store'
+    │  │         └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x104d63bf0>
+    │  └ <function NDFrame.to_csv at 0x1099eefc0>
+    └     having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_Ind...
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           │     │       └ {'index': False, 'header': True}
+           │     └ (    having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_In...
+           └ <function NDFrame.to_csv at 0x1099eef20>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/core/generic.py", line 3986, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           │                 └ <pandas.io.formats.format.DataFrameFormatter object at 0x10f66c830>
+           └ <class 'pandas.io.formats.format.DataFrameRenderer'>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/formats/format.py", line 1014, in to_csv
+    csv_formatter.save()
+    │             └ <function CSVFormatter.save at 0x1183b42c0>
+    └ <pandas.io.formats.csvs.CSVFormatter object at 0x10f1d8470>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/formats/csvs.py", line 251, in save
+    with get_handle(
+         └ <function get_handle at 0x109992200>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 749, in get_handle
+    check_parent_directory(str(handle))
+    │                          └ 'artifacts/data_ingestion/feature_store/raw_fs.csv'
+    └ <function check_parent_directory at 0x109991da0>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 616, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+                                                                       └ PosixPath('artifacts/data_ingestion/feature_store')
+
+OSError: Cannot save file into a non-existent directory: 'artifacts/data_ingestion/feature_store'
+2025-09-30 17:48:30.526 | INFO     | network_security.pipes.ingestion:split_to_train_test:65 - Split data into train and test
+2025-09-30 17:48:30.528 | SUCCESS  | network_security.pipes.ingestion:run:81 - Finished data ingestion
+2025-09-30 17:48:52.378 | INFO     | network_security.pipes.ingestion:run:77 - Starting data ingestion
+2025-09-30 17:48:52.378 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:37 - Reading data from MongoDB
+2025-09-30 17:48:53.077 | INFO     | network_security.pipes.ingestion:create_feature_store:53 - Creating feature store
+2025-09-30 17:48:53.079 | ERROR    | network_security.pipes.ingestion:create_feature_store:59 - Can't create feature store: Cannot save file into a non-existent directory: 'artifacts/data_ingestion/feature_store'
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x11d824fe0>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102c9bc20>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 79, in run
+    self.create_feature_store(df=df)
+    │    │                       └     having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_Ind...
+    │    └ <function DataIngestionPipe.create_feature_store at 0x11d7f77e0>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102c9bc20>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 56, in create_feature_store
+    df.to_csv(f"{self.feature_store_dir}/raw_fs.csv", index=False,header=True)
+    │  │         │    └ 'artifacts/data_ingestion/feature_store'
+    │  │         └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x102c9bc20>
+    │  └ <function NDFrame.to_csv at 0x1079e6fc0>
+    └     having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_Ind...
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           │     │       └ {'index': False, 'header': True}
+           │     └ (    having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_In...
+           └ <function NDFrame.to_csv at 0x1079e6f20>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/core/generic.py", line 3986, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           │                 └ <pandas.io.formats.format.DataFrameFormatter object at 0x11d117d40>
+           └ <class 'pandas.io.formats.format.DataFrameRenderer'>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/formats/format.py", line 1014, in to_csv
+    csv_formatter.save()
+    │             └ <function CSVFormatter.save at 0x11d890220>
+    └ <pandas.io.formats.csvs.CSVFormatter object at 0x11cd76c30>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/formats/csvs.py", line 251, in save
+    with get_handle(
+         └ <function get_handle at 0x10798a200>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 749, in get_handle
+    check_parent_directory(str(handle))
+    │                          └ 'artifacts/data_ingestion/feature_store/raw_fs.csv'
+    └ <function check_parent_directory at 0x107989da0>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 616, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+                                                                       └ PosixPath('artifacts/data_ingestion/feature_store')
+
+OSError: Cannot save file into a non-existent directory: 'artifacts/data_ingestion/feature_store'
+2025-09-30 17:48:53.182 | INFO     | network_security.pipes.ingestion:split_to_train_test:65 - Split data into train and test
+2025-09-30 17:48:53.183 | SUCCESS  | network_security.pipes.ingestion:run:81 - Finished data ingestion
+2025-09-30 17:49:09.704 | INFO     | network_security.pipes.ingestion:run:77 - Starting data ingestion
+2025-09-30 17:49:09.704 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:37 - Reading data from MongoDB
+2025-09-30 17:49:10.421 | INFO     | network_security.pipes.ingestion:create_feature_store:53 - Creating feature store
+2025-09-30 17:49:10.422 | ERROR    | network_security.pipes.ingestion:create_feature_store:59 - Can't create feature store: Cannot save file into a non-existent directory: 'artifacts/data_ingestion/feature_store'
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x109624f40>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x1002afc20>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 79, in run
+    self.create_feature_store(df=df)
+    │    │                       └     having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_Ind...
+    │    └ <function DataIngestionPipe.create_feature_store at 0x1095f7740>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x1002afc20>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 56, in create_feature_store
+    df.to_csv(f"{self.feature_store_dir}/raw_fs.csv", index=False,header=True)
+    │  │         │    └ 'artifacts/data_ingestion/feature_store'
+    │  │         └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x1002afc20>
+    │  └ <function NDFrame.to_csv at 0x10436af20>
+    └     having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_Ind...
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           │     │       └ {'index': False, 'header': True}
+           │     └ (    having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_In...
+           └ <function NDFrame.to_csv at 0x10436ae80>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/core/generic.py", line 3986, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           │                 └ <pandas.io.formats.format.DataFrameFormatter object at 0x108448800>
+           └ <class 'pandas.io.formats.format.DataFrameRenderer'>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/formats/format.py", line 1014, in to_csv
+    csv_formatter.save()
+    │             └ <function CSVFormatter.save at 0x109690220>
+    └ <pandas.io.formats.csvs.CSVFormatter object at 0x107fa7260>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/formats/csvs.py", line 251, in save
+    with get_handle(
+         └ <function get_handle at 0x10430e160>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 749, in get_handle
+    check_parent_directory(str(handle))
+    │                          └ 'artifacts/data_ingestion/feature_store/raw_fs.csv'
+    └ <function check_parent_directory at 0x10430dd00>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 616, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+                                                                       └ PosixPath('artifacts/data_ingestion/feature_store')
+
+OSError: Cannot save file into a non-existent directory: 'artifacts/data_ingestion/feature_store'
+2025-09-30 17:49:10.523 | SUCCESS  | network_security.pipes.ingestion:run:81 - Finished data ingestion
+2025-09-30 17:49:30.809 | INFO     | network_security.pipes.ingestion:run:77 - Starting data ingestion
+2025-09-30 17:49:30.809 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:37 - Reading data from MongoDB
+2025-09-30 17:49:31.522 | INFO     | network_security.pipes.ingestion:create_feature_store:53 - Creating feature store
+2025-09-30 17:49:31.526 | SUCCESS  | network_security.pipes.ingestion:create_feature_store:57 - Feature store created at artifacts/data_ingestion/feature_store
+2025-09-30 17:49:31.526 | SUCCESS  | network_security.pipes.ingestion:run:81 - Finished data ingestion
+2025-09-30 17:50:35.730 | INFO     | network_security.pipes.ingestion:run:77 - Starting data ingestion
+2025-09-30 17:50:35.730 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:37 - Reading data from MongoDB
+2025-09-30 17:50:36.407 | INFO     | network_security.pipes.ingestion:create_feature_store:53 - Creating feature store
+2025-09-30 17:50:36.411 | SUCCESS  | network_security.pipes.ingestion:create_feature_store:57 - Feature store created at artifacts/feature_store
+2025-09-30 17:50:36.411 | SUCCESS  | network_security.pipes.ingestion:run:81 - Finished data ingestion
+2025-09-30 17:50:55.780 | INFO     | network_security.pipes.ingestion:run:77 - Starting data ingestion
+2025-09-30 17:50:55.781 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:37 - Reading data from MongoDB
+2025-09-30 17:50:56.475 | INFO     | network_security.pipes.ingestion:create_feature_store:53 - Creating feature store
+2025-09-30 17:50:56.479 | SUCCESS  | network_security.pipes.ingestion:create_feature_store:57 - Feature store created at artifacts/feature_store
+2025-09-30 17:50:56.479 | INFO     | network_security.pipes.ingestion:split_to_train_test:65 - Split data into train and test
+2025-09-30 17:50:56.482 | ERROR    | network_security.pipes.ingestion:split_to_train_test:73 - Can't split data into train and test: Cannot save file into a non-existent directory: 'artifacts/data_ingestion'
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x123b14fe0>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x1014eba70>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 80, in run
+    self.split_to_train_test(df)
+    │    │                   └     having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_Ind...
+    │    └ <function DataIngestionPipe.split_to_train_test at 0x123b14f40>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x1014eba70>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 70, in split_to_train_test
+    train_set.to_csv(self.train_dir)
+    │         │      │    └ 'artifacts/data_ingestion/train.csv'
+    │         │      └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x1014eba70>
+    │         └ <function NDFrame.to_csv at 0x105a62fc0>
+    └     having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_Ind...
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           │     │       └ {}
+           │     └ (    having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_In...
+           └ <function NDFrame.to_csv at 0x105a62f20>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/core/generic.py", line 3986, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           │                 └ <pandas.io.formats.format.DataFrameFormatter object at 0x1224fec30>
+           └ <class 'pandas.io.formats.format.DataFrameRenderer'>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/formats/format.py", line 1014, in to_csv
+    csv_formatter.save()
+    │             └ <function CSVFormatter.save at 0x123b802c0>
+    └ <pandas.io.formats.csvs.CSVFormatter object at 0x1203ac380>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/formats/csvs.py", line 251, in save
+    with get_handle(
+         └ <function get_handle at 0x105a06200>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 749, in get_handle
+    check_parent_directory(str(handle))
+    │                          └ 'artifacts/data_ingestion/train.csv'
+    └ <function check_parent_directory at 0x105a05da0>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 616, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+                                                                       └ PosixPath('artifacts/data_ingestion')
+
+OSError: Cannot save file into a non-existent directory: 'artifacts/data_ingestion'
+2025-09-30 17:50:56.557 | SUCCESS  | network_security.pipes.ingestion:run:81 - Finished data ingestion
+2025-09-30 17:56:11.688 | INFO     | network_security.pipes.ingestion:run:81 - Starting data ingestion
+2025-09-30 17:56:11.688 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:41 - Reading data from MongoDB
+2025-09-30 17:56:12.374 | INFO     | network_security.pipes.ingestion:create_feature_store:57 - Creating feature store
+2025-09-30 17:56:12.378 | SUCCESS  | network_security.pipes.ingestion:create_feature_store:61 - Feature store created at artifacts/feature_store
+2025-09-30 17:56:12.378 | INFO     | network_security.pipes.ingestion:split_to_train_test:69 - Split data into train and test
+2025-09-30 17:56:12.380 | ERROR    | network_security.pipes.ingestion:split_to_train_test:77 - Can't split data into train and test: [Errno 21] Is a directory: 'artifacts/data_ingestion/train.csv'
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x10e8091c0>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x104e045f0>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 84, in run
+    self.split_to_train_test(df)
+    │    │                   └     having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_Ind...
+    │    └ <function DataIngestionPipe.split_to_train_test at 0x10e809120>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x104e045f0>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 74, in split_to_train_test
+    train_set.to_csv(self.train_dir)
+    │         │      │    └ 'artifacts/data_ingestion/train.csv'
+    │         │      └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x104e045f0>
+    │         └ <function NDFrame.to_csv at 0x10896efc0>
+    └     having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_Ind...
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           │     │       └ {}
+           │     └ (    having_IP_Address  URL_Length  Shortining_Service  having_At_Symbol  double_slash_redirecting  ...  Page_Rank  Google_In...
+           └ <function NDFrame.to_csv at 0x10896ef20>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/core/generic.py", line 3986, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           │                 └ <pandas.io.formats.format.DataFrameFormatter object at 0x10a5a7470>
+           └ <class 'pandas.io.formats.format.DataFrameRenderer'>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/formats/format.py", line 1014, in to_csv
+    csv_formatter.save()
+    │             └ <function CSVFormatter.save at 0x10e8744a0>
+    └ <pandas.io.formats.csvs.CSVFormatter object at 0x10dcb3410>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/formats/csvs.py", line 251, in save
+    with get_handle(
+         └ <function get_handle at 0x108916200>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+
+IsADirectoryError: [Errno 21] Is a directory: 'artifacts/data_ingestion/train.csv'
+2025-09-30 17:56:12.455 | SUCCESS  | network_security.pipes.ingestion:run:85 - Finished data ingestion
+2025-09-30 17:56:30.415 | INFO     | network_security.pipes.ingestion:run:80 - Starting data ingestion
+2025-09-30 17:56:30.415 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:40 - Reading data from MongoDB
+2025-09-30 17:56:31.104 | INFO     | network_security.pipes.ingestion:create_feature_store:56 - Creating feature store
+2025-09-30 17:56:31.107 | SUCCESS  | network_security.pipes.ingestion:create_feature_store:60 - Feature store created at artifacts/feature_store
+2025-09-30 17:56:31.107 | INFO     | network_security.pipes.ingestion:split_to_train_test:68 - Split data into train and test
+2025-09-30 17:56:31.111 | SUCCESS  | network_security.pipes.ingestion:run:84 - Finished data ingestion
+2025-09-30 17:57:43.059 | INFO     | network_security.pipes.ingestion:run:78 - Starting data ingestion
+2025-09-30 17:57:43.059 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:40 - Reading data from MongoDB
+2025-09-30 17:57:43.731 | INFO     | network_security.pipes.ingestion:create_feature_store:56 - Creating feature store
+2025-09-30 17:57:43.734 | SUCCESS  | network_security.pipes.ingestion:create_feature_store:58 - Feature store created at artifacts/feature_store
+2025-09-30 17:57:43.734 | INFO     | network_security.pipes.ingestion:split_to_train_test:66 - Split data into train and test
+2025-09-30 17:57:43.738 | SUCCESS  | network_security.pipes.ingestion:run:82 - Finished data ingestion
+2025-10-12 19:33:27.510 | INFO     | network_security.pipes.ingestion:run:83 - Starting data ingestion
+2025-10-12 19:33:27.510 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:40 - Reading data from MongoDB
+2025-10-12 19:34:09.605 | ERROR    | network_security.pipes.ingestion:read_from_mongo_db:52 - Can't read from MongoDB: No replica set members match selector "Primary()", Timeout: 30s, Topology Description: <TopologyDescription id: 68ebd857c6fb66fa739e14ab, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-sqvxrve-shard-00-00.2ylalqm.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.10478549997787923>, <ServerDescription ('ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017: timed out')>, <ServerDescription ('ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net:27017: timed out')>]>
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x114d451c0>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x10065fc80>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 84, in run
+    df = self.read_from_mongo_db()
+         │    └ <function DataIngestionPipe.read_from_mongo_db at 0x114d14ae0>
+         └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x10065fc80>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 45, in read_from_mongo_db
+    list(etl_obj.find({}))
+         │       └ <function Collection.find at 0x101436340>
+         └ Collection(Database(MongoClient(host=['ac-sqvxrve-shard-00-00.2ylalqm.mongodb.net:27017', 'ac-sqvxrve-shard-00-01.2ylalqm.mon...
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/cursor.py", line 1238, in next
+    if len(self.__data) or self._refresh():
+           │               │    └ <function Cursor._refresh at 0x1013d37e0>
+           │               └ <pymongo.cursor.Cursor object at 0x1004dfc50>
+           └ <pymongo.cursor.Cursor object at 0x1004dfc50>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/cursor.py", line 1155, in _refresh
+    self.__send_message(q)
+    │                   └ <pymongo.message._Query object at 0x114ccaae0>
+    └ <pymongo.cursor.Cursor object at 0x1004dfc50>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/cursor.py", line 1044, in __send_message
+    response = client._run_operation(
+               │      └ <function MongoClient._run_operation at 0x10170b880>
+               └ MongoClient(host=['ac-sqvxrve-shard-00-00.2ylalqm.mongodb.net:27017', 'ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017', 'ac...
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1424, in _run_operation
+    return self._retryable_read(
+           │    └ <function MongoClient._retryable_read at 0x10170ba60>
+           └ MongoClient(host=['ac-sqvxrve-shard-00-00.2ylalqm.mongodb.net:27017', 'ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017', 'ac...
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1514, in _retryable_read
+    server = self._select_server(
+             │    └ <function MongoClient._select_server at 0x10170b420>
+             └ MongoClient(host=['ac-sqvxrve-shard-00-00.2ylalqm.mongodb.net:27017', 'ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017', 'ac...
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1346, in _select_server
+    server = topology.select_server(server_selector)
+             │        │             └ Primary()
+             │        └ <function Topology.select_server at 0x1016ffba0>
+             └ <Topology <TopologyDescription id: 68ebd857c6fb66fa739e14ab, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription...
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/topology.py", line 244, in select_server
+    return random.choice(self.select_servers(selector,
+           │      │      │    │              └ Primary()
+           │      │      │    └ <function Topology.select_servers at 0x1016ffa60>
+           │      │      └ <Topology <TopologyDescription id: 68ebd857c6fb66fa739e14ab, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription...
+           │      └ <bound method Random.choice of <random.Random object at 0x10201cc20>>
+           └ <module 'random' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/random.py'>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/topology.py", line 202, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          │    └ <function Topology._select_servers_loop at 0x1016ffb00>
+                          └ <Topology <TopologyDescription id: 68ebd857c6fb66fa739e14ab, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription...
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/pymongo/topology.py", line 218, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+          └ <class 'pymongo.errors.ServerSelectionTimeoutError'>
+
+pymongo.errors.ServerSelectionTimeoutError: No replica set members match selector "Primary()", Timeout: 30s, Topology Description: <TopologyDescription id: 68ebd857c6fb66fa739e14ab, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-sqvxrve-shard-00-00.2ylalqm.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.10478549997787923>, <ServerDescription ('ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-sqvxrve-shard-00-01.2ylalqm.mongodb.net:27017: timed out')>, <ServerDescription ('ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-sqvxrve-shard-00-02.2ylalqm.mongodb.net:27017: timed out')>]>
+2025-10-12 19:34:09.626 | INFO     | network_security.pipes.ingestion:create_feature_store:61 - Creating feature store
+2025-10-12 19:34:09.626 | ERROR    | network_security.pipes.ingestion:create_feature_store:65 - Can't create feature store: 'NoneType' object has no attribute 'to_csv'
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x114d451c0>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x10065fc80>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 85, in run
+    self.create_feature_store(df=df)
+    │    │                       └ None
+    │    └ <function DataIngestionPipe.create_feature_store at 0x114d179c0>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x10065fc80>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 62, in create_feature_store
+    df.to_csv(f"{self.feature_store_dir}/{self.config.FEATURE_STORE_FILE}", index=False,header=True)
+    │            │    │                   │    │      └ 'FS.csv'
+    │            │    │                   │    └ <module 'network_security.constant.ingestion' from '/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/co...
+    │            │    │                   └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x10065fc80>
+    │            │    └ 'artifacts/feature_store'
+    │            └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x10065fc80>
+    └ None
+
+AttributeError: 'NoneType' object has no attribute 'to_csv'
+2025-10-12 19:34:09.630 | INFO     | network_security.pipes.ingestion:split_to_train_test:71 - Split data into train and test
+2025-10-12 19:34:09.630 | ERROR    | network_security.pipes.ingestion:split_to_train_test:79 - Can't split data into train and test: Expected sequence or array-like, got <class 'NoneType'>
+Traceback (most recent call last):
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/main.py", line 6, in <module>
+    ingestionObj.run()
+    │            └ <function DataIngestionPipe.run at 0x114d451c0>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x10065fc80>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 86, in run
+    self.split_to_train_test(df)
+    │    │                   └ None
+    │    └ <function DataIngestionPipe.split_to_train_test at 0x114d45120>
+    └ <network_security.pipes.ingestion.DataIngestionPipe object at 0x10065fc80>
+
+> File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/network_security/pipes/ingestion.py", line 72, in split_to_train_test
+    train_set, test_set = train_test_split(
+                          └ <function train_test_split at 0x114cf7c40>
+
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/sklearn/utils/_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+           │     │       └ {'train_size': 0.2}
+           │     └ (None,)
+           └ <function train_test_split at 0x114cf7b00>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/sklearn/model_selection/_split.py", line 2918, in train_test_split
+    n_samples = _num_samples(arrays[0])
+                │            └ [None]
+                └ <function _num_samples at 0x11413f7e0>
+  File "/Users/EsotericMat/PycharmProjects/NetworkSecurityE2E/.venv/lib/python3.12/site-packages/sklearn/utils/validation.py", line 395, in _num_samples
+    raise TypeError(message)
+                    └ "Expected sequence or array-like, got <class 'NoneType'>"
+
+TypeError: Expected sequence or array-like, got <class 'NoneType'>
+2025-10-12 19:34:09.635 | SUCCESS  | network_security.pipes.ingestion:run:87 - Finished data ingestion
+2025-10-25 23:25:58.494 | INFO     | network_security.pipes.validation:run:77 - Starting data validation
+2025-10-25 23:25:58.494 | INFO     | network_security.pipes.validation:load_train_test_data:46 - Loading train and test data from artifacts/data_ingestion
+2025-10-25 23:27:50.322 | INFO     | network_security.pipes.validation:run:76 - Starting data validation
+2025-10-25 23:27:50.323 | INFO     | network_security.pipes.validation:load_train_test_data:45 - Loading train and test data from artifacts/data_ingestion
+2025-10-25 23:27:50.325 | INFO     | network_security.pipes.validation:step_report:41 - Step report saved: Nulls_Detection: True
+2025-10-25 23:27:50.326 | INFO     | network_security.pipes.validation:step_report:41 - Step report saved: Validation_Schema: False
+2025-10-25 23:27:50.327 | INFO     | network_security.pipes.validation:step_report:41 - Step report saved: Nulls_Detection: True
+2025-10-25 23:27:50.328 | INFO     | network_security.pipes.validation:step_report:41 - Step report saved: Validation_Schema: False
+2025-10-26 10:41:58.191 | INFO     | network_security.pipes.validation:run:76 - Starting data validation
+2025-10-26 10:41:58.191 | INFO     | network_security.pipes.validation:load_train_test_data:45 - Loading train and test data from artifacts/data_ingestion
+2025-10-26 10:41:58.198 | INFO     | network_security.pipes.validation:step_report:41 - Step report saved: Nulls_Detection: True
+2025-10-26 10:43:40.620 | INFO     | network_security.pipes.validation:run:77 - Starting data validation
+2025-10-26 10:43:40.620 | INFO     | network_security.pipes.validation:load_train_test_data:45 - Loading train and test data from artifacts/data_ingestion
+2025-10-26 10:43:40.627 | INFO     | network_security.pipes.validation:step_report:41 - Step report saved: Nulls_Detection: True
+2025-10-26 10:43:56.001 | INFO     | network_security.pipes.validation:run:77 - Starting data validation
+2025-10-26 10:43:56.001 | INFO     | network_security.pipes.validation:load_train_test_data:45 - Loading train and test data from artifacts/data_ingestion
+2025-10-26 10:43:56.008 | INFO     | network_security.pipes.validation:step_report:41 - Step report saved: Nulls_Detection: True
+2025-10-26 10:43:56.016 | INFO     | network_security.pipes.validation:step_report:41 - Step report saved: Validation_Schema: True
+2025-10-26 10:43:56.017 | INFO     | network_security.pipes.validation:step_report:41 - Step report saved: Nulls_Detection: True
+2025-10-26 10:43:56.024 | INFO     | network_security.pipes.validation:step_report:41 - Step report saved: Validation_Schema: True
+2025-10-26 10:59:47.455 | INFO     | network_security.pipes.validation:run:83 - Starting data validation
+2025-10-26 10:59:47.455 | INFO     | network_security.pipes.validation:load_train_test_data:51 - Loading train and test data from artifacts/data_ingestion
+2025-10-26 11:01:48.396 | INFO     | network_security.pipes.validation:run:83 - Starting data validation
+2025-10-26 11:01:48.397 | INFO     | network_security.pipes.validation:load_train_test_data:51 - Loading train and test data from artifacts/data_ingestion
+2025-10-26 11:01:48.399 | INFO     | network_security.pipes.validation:step_report:47 - Step report saved: train - Nulls_Detection: True
+2025-10-26 11:15:13.958 | INFO     | network_security.pipes.validation:run:83 - Starting data validation
+2025-10-26 11:15:13.958 | INFO     | network_security.pipes.validation:load_train_test_data:51 - Loading train and test data from artifacts/data_ingestion
+2025-10-26 11:15:13.960 | WARNING  | network_security.toolkit.toolkit:read_yaml:23 - [Errno 2] No such file or directory: 'artifacts/validated/validation_report/validatoin_report.yaml': Can't read artifacts/validated/validation_report/validatoin_report.yaml
+2025-10-26 11:16:31.465 | INFO     | network_security.pipes.validation:run:92 - Starting data validation
+2025-10-26 11:16:31.465 | INFO     | network_security.pipes.validation:load_train_test_data:60 - Loading train and test data from artifacts/data_ingestion
+2025-10-26 11:16:31.467 | WARNING  | network_security.toolkit.toolkit:read_yaml:23 - [Errno 2] No such file or directory: 'artifacts/validated/validation_report/validatoin_report.yaml': Can't read artifacts/validated/validation_report/validatoin_report.yaml
+2025-10-26 11:20:47.062 | INFO     | network_security.pipes.validation:run:90 - Starting data validation
+2025-10-26 11:20:47.062 | INFO     | network_security.pipes.validation:load_train_test_data:58 - Loading train and test data from artifacts/data_ingestion
+2025-10-26 11:20:47.064 | WARNING  | network_security.toolkit.toolkit:read_yaml:23 - [Errno 2] No such file or directory: 'artifacts/validated/validation_report/validatoin_report.yaml': Can't read artifacts/validated/validation_report/validatoin_report.yaml
+2025-10-30 21:30:42.032 | INFO     | network_security.pipes.validation:run:91 - Starting data validation
+2025-10-30 21:30:42.032 | INFO     | network_security.pipes.validation:load_train_test_data:59 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 21:30:42.037 | WARNING  | network_security.toolkit.toolkit:read_yaml:23 - [Errno 2] No such file or directory: 'artifacts/validated/validation_report/validatoin_report.yaml': Can't read artifacts/validated/validation_report/validatoin_report.yaml
+2025-10-30 21:36:03.141 | INFO     | network_security.pipes.validation:run:92 - Starting data validation
+2025-10-30 21:36:03.141 | INFO     | network_security.pipes.validation:load_train_test_data:60 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 21:36:03.143 | WARNING  | network_security.toolkit.toolkit:read_yaml:23 - [Errno 2] No such file or directory: 'artifacts/validated/validation_report/validatoin_report.yaml': Can't read artifacts/validated/validation_report/validatoin_report.yaml
+2025-10-30 21:37:32.966 | INFO     | network_security.pipes.validation:run:91 - Starting data validation
+2025-10-30 21:37:32.966 | INFO     | network_security.pipes.validation:load_train_test_data:59 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 21:37:32.969 | WARNING  | network_security.toolkit.toolkit:read_yaml:23 - [Errno 2] No such file or directory: 'artifacts/validated/validation_report/validatoin_report.yaml': Can't read artifacts/validated/validation_report/validatoin_report.yaml
+2025-10-30 21:37:32.970 | INFO     | network_security.pipes.validation:step_report:54 - Step report saved: train - Nulls_Detection: True
+2025-10-30 21:40:41.831 | INFO     | network_security.pipes.validation:run:88 - Starting data validation
+2025-10-30 21:40:41.832 | INFO     | network_security.pipes.validation:load_train_test_data:56 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 21:40:41.833 | WARNING  | network_security.toolkit.toolkit:read_yaml:23 - [Errno 2] No such file or directory: 'artifacts/validated/validation_report/validatoin_report.yaml': Can't read artifacts/validated/validation_report/validatoin_report.yaml
+2025-10-30 21:40:41.834 | INFO     | network_security.pipes.validation:step_report:51 - Step report saved: train - Nulls_Detection: True
+2025-10-30 21:47:08.408 | INFO     | network_security.pipes.validation:run:88 - Starting data validation
+2025-10-30 21:47:08.409 | INFO     | network_security.pipes.validation:load_train_test_data:56 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 21:47:08.410 | WARNING  | network_security.toolkit.toolkit:read_yaml:23 - [Errno 2] No such file or directory: 'artifacts/validated/validation_report/validatoin_report.yaml': Can't read artifacts/validated/validation_report/validatoin_report.yaml
+2025-10-30 21:47:08.411 | INFO     | network_security.pipes.validation:step_report:51 - Step report saved: train - Nulls_Detection: True
+2025-10-30 21:47:08.412 | INFO     | network_security.pipes.validation:step_report:45 - Step report saved: train - Validation_Schema: True
+2025-10-30 21:47:08.413 | INFO     | network_security.pipes.validation:step_report:45 - Step report saved: test - Nulls_Detection: True
+2025-10-30 21:47:08.415 | INFO     | network_security.pipes.validation:step_report:45 - Step report saved: test - Validation_Schema: True
+2025-10-30 22:33:29.171 | INFO     | network_security.pipes.validation:run:113 - Starting data validation
+2025-10-30 22:33:29.171 | INFO     | network_security.pipes.validation:load_train_test_data:61 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 22:33:29.173 | WARNING  | network_security.toolkit.toolkit:read_yaml:23 - [Errno 2] No such file or directory: 'artifacts/validated/validation_report/validatoin_report.yaml': Can't read artifacts/validated/validation_report/validatoin_report.yaml
+2025-10-30 22:33:29.173 | INFO     | network_security.pipes.validation:step_report:54 - Step report saved: train - Nulls_Detection: True
+2025-10-30 22:33:29.175 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: train - Validation_Schema: True
+2025-10-30 22:33:29.176 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: test - Nulls_Detection: True
+2025-10-30 22:33:29.177 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: test - Validation_Schema: True
+2025-10-30 22:33:29.178 | WARNING  | network_security.pipes.validation:validate_data_drift:108 - Data Drift test failed
+2025-10-30 22:36:42.732 | INFO     | network_security.pipes.validation:run:113 - Starting data validation
+2025-10-30 22:36:42.732 | INFO     | network_security.pipes.validation:load_train_test_data:61 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 22:36:42.734 | WARNING  | network_security.toolkit.toolkit:read_yaml:23 - [Errno 2] No such file or directory: 'artifacts/validated/validation_report/validatoin_report.yaml': Can't read artifacts/validated/validation_report/validatoin_report.yaml
+2025-10-30 22:36:42.734 | INFO     | network_security.pipes.validation:step_report:54 - Step report saved: train - Nulls_Detection: True
+2025-10-30 22:36:42.736 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: train - Validation_Schema: True
+2025-10-30 22:36:42.737 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: test - Nulls_Detection: True
+2025-10-30 22:36:42.739 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: test - Validation_Schema: True
+2025-10-30 22:36:42.739 | WARNING  | network_security.pipes.validation:validate_data_drift:108 - Data Drift test failed: 'numpy.float64' object is not callable
+2025-10-30 22:37:01.955 | INFO     | network_security.pipes.validation:run:113 - Starting data validation
+2025-10-30 22:37:01.955 | INFO     | network_security.pipes.validation:load_train_test_data:61 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 22:37:01.957 | WARNING  | network_security.toolkit.toolkit:read_yaml:23 - [Errno 2] No such file or directory: 'artifacts/validated/validation_report/validatoin_report.yaml': Can't read artifacts/validated/validation_report/validatoin_report.yaml
+2025-10-30 22:37:01.958 | INFO     | network_security.pipes.validation:step_report:54 - Step report saved: train - Nulls_Detection: True
+2025-10-30 22:37:01.960 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: train - Validation_Schema: True
+2025-10-30 22:37:01.960 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: test - Nulls_Detection: True
+2025-10-30 22:37:01.962 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: test - Validation_Schema: True
+2025-10-30 22:37:01.968 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: train and test - Drift: True
+2025-10-30 22:37:42.876 | INFO     | network_security.pipes.validation:run:113 - Starting data validation
+2025-10-30 22:37:42.876 | INFO     | network_security.pipes.validation:load_train_test_data:61 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 22:37:42.878 | WARNING  | network_security.toolkit.toolkit:read_yaml:23 - [Errno 2] No such file or directory: 'artifacts/validated/validation_report/validatoin_report.yaml': Can't read artifacts/validated/validation_report/validatoin_report.yaml
+2025-10-30 22:37:42.878 | INFO     | network_security.pipes.validation:step_report:54 - Step report saved: train - Nulls_Detection: True
+2025-10-30 22:37:42.880 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: train - Validation_Schema: True
+2025-10-30 22:37:42.881 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: test - Nulls_Detection: True
+2025-10-30 22:37:42.882 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: test - Validation_Schema: True
+2025-10-30 22:37:42.889 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: train and test - Drift: True
+2025-10-30 22:37:42.889 | INFO     | network_security.pipes.validation:run:131 - Data drift report saved, Validation process done
+2025-10-30 22:37:42.889 | ERROR    | network_security.pipes.validation:run:135 - Data validation failed, -2 tests failed. Check validation report
+2025-10-30 22:38:16.208 | INFO     | network_security.pipes.validation:run:113 - Starting data validation
+2025-10-30 22:38:16.208 | INFO     | network_security.pipes.validation:load_train_test_data:61 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 22:38:16.211 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: train - Nulls_Detection: True
+2025-10-30 22:38:16.213 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: train - Validation_Schema: True
+2025-10-30 22:38:16.214 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: test - Nulls_Detection: True
+2025-10-30 22:38:16.215 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: test - Validation_Schema: True
+2025-10-30 22:38:16.221 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: train and test - Drift: True
+2025-10-30 22:38:16.222 | INFO     | network_security.pipes.validation:run:131 - Data drift report saved, Validation process done
+2025-10-30 22:38:16.222 | ERROR    | network_security.pipes.validation:run:135 - Data validation failed, -2 tests failed. Check validation report
+2025-10-30 22:38:42.159 | INFO     | network_security.pipes.validation:run:113 - Starting data validation
+2025-10-30 22:38:42.159 | INFO     | network_security.pipes.validation:load_train_test_data:61 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 22:38:42.161 | WARNING  | network_security.toolkit.toolkit:read_yaml:23 - [Errno 2] No such file or directory: 'artifacts/validated/validation_report/validatoin_report.yaml': Can't read artifacts/validated/validation_report/validatoin_report.yaml
+2025-10-30 22:38:42.161 | INFO     | network_security.pipes.validation:step_report:54 - Step report saved: train - Nulls_Detection: True
+2025-10-30 22:38:42.163 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: train - Validation_Schema: True
+2025-10-30 22:38:42.164 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: test - Nulls_Detection: True
+2025-10-30 22:38:42.165 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: test - Validation_Schema: True
+2025-10-30 22:38:42.171 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: train and test - Drift: True
+2025-10-30 22:38:42.172 | INFO     | network_security.pipes.validation:run:131 - Data drift report saved, Validation process done
+2025-10-30 22:38:42.172 | SUCCESS  | network_security.pipes.validation:run:133 - Data validation passed
+2025-10-30 22:42:00.267 | INFO     | network_security.pipes.validation:run:113 - Starting data validation
+2025-10-30 22:42:00.267 | INFO     | network_security.pipes.validation:load_train_test_data:61 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 22:42:00.270 | WARNING  | network_security.toolkit.toolkit:read_yaml:23 - [Errno 2] No such file or directory: 'artifacts/validated/validation_report/validatoin_report.yaml': Can't read artifacts/validated/validation_report/validatoin_report.yaml
+2025-10-30 22:42:00.270 | INFO     | network_security.pipes.validation:step_report:54 - Step report saved: train - Nulls_Detection: True
+2025-10-30 22:42:00.272 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: train - Validation_Schema: True
+2025-10-30 22:42:00.272 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: test - Nulls_Detection: True
+2025-10-30 22:42:00.274 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: test - Validation_Schema: True
+2025-10-30 22:42:00.280 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: train and test - Drift: True
+2025-10-30 22:42:00.281 | INFO     | network_security.pipes.validation:run:131 - Data drift report saved, Validation process done
+2025-10-30 22:42:00.281 | SUCCESS  | network_security.pipes.validation:run:133 - Data validation passed
+2025-10-30 22:44:43.598 | INFO     | network_security.pipes.validation:run:113 - Starting data validation
+2025-10-30 22:44:43.598 | INFO     | network_security.pipes.validation:load_train_test_data:61 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 22:44:43.600 | WARNING  | network_security.toolkit.toolkit:read_yaml:23 - [Errno 2] No such file or directory: 'artifacts/validated/validation_report/validatoin_report.yaml': Can't read artifacts/validated/validation_report/validatoin_report.yaml
+2025-10-30 22:44:43.600 | INFO     | network_security.pipes.validation:step_report:54 - Step report saved: train - Nulls_Detection: True
+2025-10-30 22:44:43.602 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: train - Validation_Schema: True
+2025-10-30 22:44:43.603 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: test - Nulls_Detection: True
+2025-10-30 22:44:43.605 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: test - Validation_Schema: True
+2025-10-30 22:44:43.610 | INFO     | network_security.pipes.validation:step_report:48 - Step report saved: train and test - Drift: True
+2025-10-30 22:44:43.611 | INFO     | network_security.pipes.validation:run:131 - Data drift report saved, Validation process done
+2025-10-30 22:44:43.611 | SUCCESS  | network_security.pipes.validation:run:133 - Data validation passed
+2025-10-30 23:17:46.132 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:40 - Reading data from MongoDB
+2025-10-30 23:19:15.980 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:40 - Reading data from MongoDB
+2025-10-30 23:20:30.026 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:40 - Reading data from MongoDB
+2025-10-30 23:20:39.953 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:40 - Reading data from MongoDB
+2025-10-30 23:30:25.398 | WARNING  | network_security.toolkit.toolkit:read_yaml:23 - [Errno 2] No such file or directory: 'artifacts/test_report.yaml': Can't read artifacts/test_report.yaml
+2025-10-30 23:30:25.399 | INFO     | network_security.pipes.validation:step_report:55 - Step report saved: pytest_subset - module_testing: True
+2025-10-30 23:31:29.775 | WARNING  | network_security.toolkit.toolkit:read_yaml:23 - [Errno 2] No such file or directory: 'tests/artifacts/test_report.yaml': Can't read tests/artifacts/test_report.yaml
+2025-10-30 23:31:29.775 | INFO     | network_security.pipes.validation:step_report:55 - Step report saved: pytest_subset - module_testing: True
+2025-10-30 23:33:35.083 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: pytest_subset - module_testing: True
+2025-10-30 23:33:48.360 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: pytest_subset - module_testing: True
+2025-10-30 23:35:47.421 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: pytest_subset - module_testing: True
+2025-10-30 23:35:47.422 | INFO     | network_security.pipes.validation:load_train_test_data:62 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 23:36:17.358 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: pytest_subset - module_testing: True
+2025-10-30 23:36:17.359 | INFO     | network_security.pipes.validation:load_train_test_data:62 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 23:39:20.992 | INFO     | network_security.pipes.ingestion:run:83 - Starting data ingestion
+2025-10-30 23:39:20.992 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:40 - Reading data from MongoDB
+2025-10-30 23:39:22.875 | INFO     | network_security.pipes.ingestion:create_feature_store:61 - Creating feature store
+2025-10-30 23:39:22.910 | SUCCESS  | network_security.pipes.ingestion:create_feature_store:63 - Feature store created at artifacts/feature_store
+2025-10-30 23:39:22.910 | INFO     | network_security.pipes.ingestion:split_to_train_test:71 - Split data into train and test
+2025-10-30 23:39:22.947 | SUCCESS  | network_security.pipes.ingestion:run:87 - Finished data ingestion
+2025-10-30 23:39:22.947 | INFO     | network_security.pipes.validation:run:114 - Starting data validation
+2025-10-30 23:39:22.947 | INFO     | network_security.pipes.validation:load_train_test_data:62 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 23:39:22.959 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: train - Nulls_Detection: True
+2025-10-30 23:39:22.961 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: train - Validation_Schema: True
+2025-10-30 23:39:22.962 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: test - Nulls_Detection: True
+2025-10-30 23:39:22.964 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: test - Validation_Schema: True
+2025-10-30 23:39:23.018 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: train and test - Drift: True
+2025-10-30 23:39:23.019 | INFO     | network_security.pipes.validation:run:132 - Data drift report saved, Validation process done
+2025-10-30 23:39:23.019 | SUCCESS  | network_security.pipes.validation:run:134 - Data validation passed
+2025-10-30 23:39:52.186 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: pytest_subset - module_testing: True
+2025-10-30 23:39:52.187 | INFO     | network_security.pipes.validation:load_train_test_data:62 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 23:40:23.964 | INFO     | network_security.pipes.ingestion:run:83 - Starting data ingestion
+2025-10-30 23:40:23.964 | INFO     | network_security.pipes.ingestion:read_from_mongo_db:40 - Reading data from MongoDB
+2025-10-30 23:40:26.093 | INFO     | network_security.pipes.ingestion:create_feature_store:61 - Creating feature store
+2025-10-30 23:40:26.128 | SUCCESS  | network_security.pipes.ingestion:create_feature_store:63 - Feature store created at artifacts/feature_store
+2025-10-30 23:40:26.128 | INFO     | network_security.pipes.ingestion:split_to_train_test:71 - Split data into train and test
+2025-10-30 23:40:26.166 | SUCCESS  | network_security.pipes.ingestion:run:87 - Finished data ingestion
+2025-10-30 23:40:26.166 | INFO     | network_security.pipes.validation:run:114 - Starting data validation
+2025-10-30 23:40:26.166 | INFO     | network_security.pipes.validation:load_train_test_data:62 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 23:40:26.177 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: train - Nulls_Detection: True
+2025-10-30 23:40:26.179 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: train - Validation_Schema: True
+2025-10-30 23:40:26.180 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: test - Nulls_Detection: True
+2025-10-30 23:40:26.182 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: test - Validation_Schema: True
+2025-10-30 23:40:26.236 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: train and test - Drift: True
+2025-10-30 23:40:26.237 | INFO     | network_security.pipes.validation:run:132 - Data drift report saved, Validation process done
+2025-10-30 23:40:26.237 | SUCCESS  | network_security.pipes.validation:run:134 - Data validation passed
+2025-10-30 23:40:37.876 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: pytest_subset - module_testing: True
+2025-10-30 23:40:37.877 | INFO     | network_security.pipes.validation:load_train_test_data:62 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 23:40:50.457 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: pytest_subset - module_testing: True
+2025-10-30 23:40:50.459 | INFO     | network_security.pipes.validation:load_train_test_data:62 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 23:44:20.771 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: pytest_subset - module_testing: True
+2025-10-30 23:44:20.772 | INFO     | network_security.pipes.validation:load_train_test_data:62 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 23:45:18.667 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: pytest_subset - module_testing: True
+2025-10-30 23:45:18.668 | INFO     | network_security.pipes.validation:load_train_test_data:62 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 23:45:33.867 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: pytest_subset - module_testing: True
+2025-10-30 23:45:33.869 | INFO     | network_security.pipes.validation:load_train_test_data:62 - Loading train and test data from artifacts/data_ingestion
+2025-10-30 23:46:08.927 | INFO     | network_security.pipes.validation:step_report:49 - Step report saved: pytest_subset - module_testing: True
+2025-10-30 23:46:08.928 | INFO     | network_security.pipes.validation:load_train_test_data:62 - Loading train and test data from artifacts/data_ingestion
